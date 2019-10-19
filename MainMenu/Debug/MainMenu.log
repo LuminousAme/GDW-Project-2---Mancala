@@ -1,6 +1,2 @@
 ﻿  MainMenu.cpp
-C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\MainMenu.cpp(7,2): error C3861: 'Instructions': identifier not found
-C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\MainMenu.cpp(6,12): error C2084: function 'int main(void)' already has a body
-C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\MainMenu.cpp(6): message : see previous definition of 'main'
-C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\MainMenu.cpp(11,21): error C2084: function 'void Instructions(void)' already has a body
-C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\MainMenu.cpp(11): message : see previous definition of 'Instructions'
+  MainMenu.vcxproj -> C:\Users\Charlene\Documents\GitKraken\GDW-Project-2---Mancala\MainMenu\Debug\MainMenu.exe
