@@ -10,10 +10,10 @@ void displayBoard(int board[]) {
 	cout << " / |            |    [   "<<board[12]<<"    ]   [   "<<board[11]<<"    ]  [   "<<board[10]<<"    ]  [   "<< board[9]<<"    ]  [   "<<board[8]<<"    ]  [   "<<board[7]<<"    ]    |            | /\n";
 	cout << " / |            |    [________]   [________]  [________]  [________]  [________]  [________]    |            | /\n";
 	cout << " / |            |                                                                               |            | /\n";
-	cout << " / |            |        6            5           4           3           2           1         |            | /\n";
+	cout << " / |            |     Ai pit 6     Ai pit 5    Ai pit 4    Ai pit 3    Ai pit 2    Ai pit 1     |            | /\n";
 	cout << " / |     "<<board[13]<<"      |                                                                               |     "<<board[6]<<"      | /\n";
 	cout << " / |            |                                                                               |            | /\n";
-	cout << " / |            |        1            2           3           4           5           6         |            | /\n";
+	cout << " / |            |     pit 1        pit 2       pit 3        pit 4       pit 5        pit 6      |            | /\n";
 	cout << " / |            |     ________     ________    ________    ________    ________    ________     |            | /\n";
 	cout << " / |            |    [        ]   [        ]  [        ]  [        ]  [        ]  [        ]    |            | /\n";
 	cout << " / |            |    [   "<<board[0]<<"    ]   [   "<<board[1]<<"    ]  [   "<<board[2]<<"    ]  [   "<<board[3]<<"    ]  [   "<<board[4]<<"    ]  [   "<<board[5]<<"    ]    |            | /\n";
