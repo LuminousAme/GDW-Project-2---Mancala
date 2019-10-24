@@ -9,7 +9,7 @@ using namespace std;
 //Global Variables
 bool inGame = true;
 int startPieceCount = 4;
-int board[14];
+int board[14], sboard[14];
 bool turn = true, extraTurn = false, inRound = true;
 
 void populate(int piece) {
@@ -114,15 +114,23 @@ void dropIn(int choice) {
 	board[choice] = 0;
 	choice++;
 	for (int i = 0; i < pieceCount; i++) {
-		if (i == pieceCount - 1) {
-			if (isCapture(choice)) {
-				capture(choice);
-			}
-			if (onSide(choice)) {
-				extraTurn = true;
-			}
+		if (turn && choice == 13) {
+			i--;
 		}
-		board[choice]++;
+		else if (!turn && choice == 6) {
+			i--;
+		}
+		else {
+			if (i == pieceCount - 1) {
+				if (isCapture(choice)) {
+					capture(choice);
+				}
+				if (onSide(choice)) {
+					extraTurn = true;
+				}
+			}
+			board[choice]++;
+		}
 		choice++;
 		if (choice >= 14) {
 			choice = 0;
@@ -156,7 +164,6 @@ int main() {
 	while (inGame) {
 		//initialize board and variables
 		int playerChoice = 0, botChoice = 7;
-		bool valChoice = false;
 		populate(startPieceCount);
 		inRound = true;
 		while (inRound) {
@@ -167,7 +174,6 @@ int main() {
 			}
 			else {
 				botChoice = mediumAi(board); 
-				valChoice = false;
 				std::cout << "\nThe bot picks hole " << botChoice-6 << ".\n";
 				dropIn(botChoice);
 			}
