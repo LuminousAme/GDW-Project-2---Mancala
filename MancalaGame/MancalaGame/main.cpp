@@ -75,7 +75,7 @@ void capture(int choice) {
 		board[choice] = -1;
 	}
 }
-bool onSide(int choice) {
+bool inBank(int choice) {
 	if (turn) {
 		if (choice == 6) {
 			return true;
@@ -125,7 +125,7 @@ void dropIn(int choice) {
 				if (isCapture(choice)) {
 					capture(choice);
 				}
-				if (onSide(choice)) {
+				if (inBank(choice)) {
 					extraTurn = true;
 				}
 			}
@@ -165,9 +165,11 @@ int main() {
 		//initialize board and variables
 		int playerChoice = 0, botChoice = 7;
 		populate(startPieceCount);
+		memcpy(sboard, board, sizeof(sboard));
 		inRound = true;
 		while (inRound) {
 			drawBoard();
+			memcpy(sboard, board, sizeof(sboard));
 			if (turn) {
 				playerChoice = getChoice();
 				dropIn(playerChoice);
