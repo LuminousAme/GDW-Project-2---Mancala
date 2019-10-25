@@ -4,8 +4,8 @@
 #include <time.h>
 #include <string>
 
-int easyAi(int board[]);
+int easyAi(int& board[]);
 
-int mediumAi(int board[]);
+int mediumAi(int& board[]);
 
-int hardAi(int board[]);
+int hardAi(int& board[]);

@@ -2,7 +2,7 @@
 #include <aiCode.h> 
 
 // Function for the easy difficulty AI.
-int easyAi(int board[])
+int easyAi(int& board[])
 {
 	//declare ai variables
 	int options[6]; //Stores all of the possible options for which pit it will pick 
@@ -48,7 +48,7 @@ int easyAi(int board[])
 } //End of easyAi 
 
 // Function for the medium difficulty AI.
-int mediumAi(int board[])
+int mediumAi(int& board[])
 {
 	//declare ai variables
 	int options[6]; //Stores all of the possible options for which pit it will pick 
@@ -79,7 +79,7 @@ int mediumAi(int board[])
 } //end of mediumAi 
 
 // Function for the hard difficulty AI. 
-int hardAi(int board[]) {
+int hardAi(int& board[]) {
 
 	//declare ai variables 
 	int zeroPits[6]; // Stores indices of the AI's pits that have no gems in them
