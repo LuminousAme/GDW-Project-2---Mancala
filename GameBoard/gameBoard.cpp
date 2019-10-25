@@ -1,7 +1,7 @@
 #include "gameBoard.h"
 
 //Function to dispaly the game board
-void displayBoard(int board[]) {
+void displayBoard(int& board[]) {
 	//each cout displays a different line of the board
 		//the breaks with "<<board[number]<<" allow the number of gems in each pit and manacala to be displayed  
 	cout << " _______________________________________________________________________________________________________________\n";
@@ -22,7 +22,7 @@ void displayBoard(int board[]) {
 } //end of display board
 
 //Function to display the middle of a pit
-string displayPit(int val) {
+string displayPit(int& val) {
 	//display for if there are less than 9 gems in a pit 
 	if (val <= 9) {
 		return "[   " + to_string(val) + "    ]";
@@ -34,7 +34,7 @@ string displayPit(int val) {
 } //end of displayPit
 
 // Function to display the middle of a manacala
-string displayMancala(int val) {
+string displayMancala(int& val) {
 	//display for if there are less than 9 gems in the mancala 
 	if (val <= 9) {
 		return	"|     " + to_string(val) + "      |";
