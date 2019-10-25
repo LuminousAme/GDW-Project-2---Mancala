@@ -77,3 +77,77 @@ int mediumAi(int board[])
 		return easyAi(board);
 	}
 } //end of mediumAi 
+
+// Function for the hard difficulty AI. 
+int hardAi(int board[]) {
+
+	//declare ai variables 
+	int zeroPits[6]; // Stores indices of the AI's pits that have no gems in them
+	int numOfZeroPits = 0; // Index for the above, Stores the number of AI pits that have no gems in them
+	int options[6]; // Stores the indices of all the pits the AI may choose 
+	int numOfOptions = 0; // Index of the above, stores the number of pits the ai is considering 
+	int opTarget[6]; // Indicies map to options[], the index of the pit the last gem will land in 
+	int choice; // Stores the index of the pit it will choose (if it doesn't skip to the medium ai) 
+
+	//Cycle through each each pit on it's side to see if any have zero gems 
+	for(int i = 0; i < 6; i++) {
+		if (board[i + 7] == 0) {
+			//If the pit has no gems, add it to the list and increase the list's size 
+			zeroPits[numOfZeroPits] = i + 7; 
+			numOfZeroPits++; 
+		}
+	}
+	//If there are pits with no gems, see if it can use them 
+	if (numOfZeroPits > 0) {
+		//Cycle through each pit with no gems 
+		for (int i = 0; i < numOfZeroPits; i++) {
+			//cycle through all the pits before the empty pit to see if any can land in the last spot
+			for (int j = 0; j < zeroPits[i] - 7; j++) {
+				//if it can 
+				if ((zeroPits[i] - (j + 7)) == board[j + 7]) {
+					//then add that pit to it's list of options 
+					options[numOfOptions] = j + 7; 
+					//record the pit it is trying to land in 
+					opTarget[numOfOptions] = zeroPits[i] - 7; 
+					//update the number of options 
+					numOfOptions++; 
+				}
+			}
+			//cycle through all the pits after the empty pit to see if any can land in the last spot 
+			for (int j = 12; j > zeroPits[i]; j--) {
+				if ((13 - j + zeroPits[i] == board[j])) { //equation seems wrong, looks like it might be off by 2 
+					//then add that pit to it's list of options 
+					options[numOfOptions] = j; 
+					//record the pit it is trying to land in
+					opTarget[numOfOptions] = zeroPits[i] - 7; 
+					//update the number of options 
+					numOfOptions++;
+				}
+			}
+		}
+		// If it has options that work determine which one is best 
+		if (numOfOptions > 0) {
+
+			// default to the first options 
+			choice = options[0]; 
+			// looping through every other option 
+			for (int i = 1; i < numOfOptions; i++) {
+				// If the next option will get the ai more points 
+				if (board[opTarget[i] - 7] > board[opTarget[i - 1] - 7]) {
+					// Make that it's main choice 
+					choice = options[i]; 
+				}
+			}
+			//Return it's choice of pit 
+			return choice; 
+		}
+		// If not just go to the medium AI's logic 
+		else {
+			return mediumAi(board); 
+		}
+	}
+	//If there are none just go to the medium AI's logic 
+	else {
+		return mediumAi(board);
+	}
+} //end of hardAi 
