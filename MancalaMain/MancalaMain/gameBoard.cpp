@@ -1,3 +1,9 @@
+/*
+Gameboard art by Shezwin Carim 
+Gameboard code by Shezwin Carim and Ame Gilham
+*/
+
+//Include header file 
 #include "gameBoard.h"
 
 //Function to dispaly the game board

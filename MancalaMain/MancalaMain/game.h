@@ -1,4 +1,11 @@
+/*
+Gameplay code by Ajieth Varatharajah and Alvin Ng
+With editing by Ame Gilham
+*/
+
 #pragma once
+
+//Import all needed librarbies and files 
 #include <iostream>
 #include <cmath>
 #include <ctime>

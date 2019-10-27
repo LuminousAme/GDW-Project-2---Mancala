@@ -1,11 +1,18 @@
+/*
+Gameplay code by Ajieth Varatharajah and Alvin Ng 
+With editing by Ame Gilham 
+*/
+
+//Include header file 
 #include "game.h"
 
+//Define namespace 
 using namespace std;
 
 //Global Variables
 bool inGame = true;
 int startPieceCount = 4;
-int board[14], sboard[14], pitCaptured, gemsStolen;
+int board[14], pitCaptured, gemsStolen;
 bool turn = true, extraTurn = false, captured = false, gotPoint = false, inRound = true;
 
 //variable used to check if the player would like to play again after the game ends 
@@ -332,16 +339,12 @@ void mancalaGame() {
 		int playerChoice = 0, botChoice = 7;
 		//fill out the gameboard 
 		populate(startPieceCount);
-		//idk what this is 
-		memcpy(sboard, board, sizeof(sboard));
 		//Set that a game is currently being played to true 
 		inRound = true;
 		//While a game is being played 
 		while (inRound) {
 			//If it's the player turn, draw the current board state 
 			if(turn) drawBoard(false);
-			//still not sure what this is 
-			memcpy(sboard, board, sizeof(sboard));
 			//If it's the player's turn
 			if (turn) {
 				//ask the player for input 
@@ -381,11 +384,11 @@ void mancalaGame() {
 			if (captured) {
 				//If it was the player tell them 
 				if (turn) {
-					cout << "Congrats you stole pit " << pitCaptured << " and got " << gemsStolen << " points for it! \n"; 
+					cout << "Congrats you stole pit " << pitCaptured - 6 << " and got " << gemsStolen << " points for it! \n"; 
 				}
 				//If it was the ai, inform the player
 				else {
-					cout << "The ai stole pit " << pitCaptured << " and got " << gemsStolen << " points for it. \n"; 
+					cout << "The ai stole pit " << pitCaptured + 1 << " and got " << gemsStolen << " points for it. \n"; 
 				}
 				//Reset the tracker for capturing pits 
 				captured = false; 
@@ -446,7 +449,6 @@ void mancalaGame() {
 		//If they want to end it, stop looping through the game and go back to the main menu 
 		if (cont.at(0) == 'n' || cont.at(0) == 'N') {
 			inGame = false;
-			prevScreen = currentScreen;
 			currentScreen = 0; 
 		}
 	}

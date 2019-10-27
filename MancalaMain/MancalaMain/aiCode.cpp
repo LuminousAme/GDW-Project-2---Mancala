@@ -1,3 +1,8 @@
+/*
+Ai code by Omair Ahmad and Ame Gilham
+*/
+
+//Include header file 
 #include "aiCode.h" 
 
 // Function for the easy difficulty AI.

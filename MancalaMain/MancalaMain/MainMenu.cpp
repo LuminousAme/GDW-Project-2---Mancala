@@ -1,15 +1,21 @@
+/*
+Menus code by Johnathan Naire 
+With editting by Ame Gilham
+*/
+
+//Include the mainmenu's header
 #include "MainMenu.h"
 
+//Define namespace 
 using namespace std;
 
 
 //Defines the standard output device
 HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
 
-
+//Define global variables for current screen, and ai difficulty level
 int aiDifficulty = 1; 
-int currentScreen = 0;
-int prevScreen = 3; 
+int currentScreen = 0; 
 
 // Function to display instruction menu
 void displayInstructions(){
@@ -60,7 +66,6 @@ void displayInstructions(){
 		//If they input 1 return them to the main menu, otherwise tell them they can only input 1 
 		switch (iInput) {
 		case 1:
-			prevScreen = currentScreen; 
 			currentScreen = 0;
 			break;
 		default:
@@ -145,7 +150,6 @@ void displaySettings() {
 			break;
 			//If they input 4, return to the main menu 
 		case 4:
-			prevScreen = currentScreen; 
 			currentScreen = 0; 
 			break;
 			//If they input anything else, ask them to input only a valid input 
@@ -187,31 +191,71 @@ void displayBorder(int i) {
 		break;
 	}
 } //end of displayBorder 
+		
+// Function to display the credits 
+void displayCredits() {
+	//Set the variable for player input 
+	int iInput = 0; 
 
-//Function to play a song 
-void playMusic(int song)
-{
-	//If the menu music has been selected play it 
-	if (song == 0) {
-		PlaySound(TEXT("MainMenu.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	//Clear the console 
+	system("CLS"); 
+
+	//Display a screen border at the top 
+	displayBorder(1); 
+
+	//Set the text colour to yellow 
+	SetConsoleTextAttribute(Console, 14); 
+	//Display the title
+	cout << "   _____              _ _ _       "
+		<< "\n  / ____|            | (_) |      "
+		<< "\n | |     _ __ ___  __| |_| |_ ___ "
+		<< "\n | |    | '__/ _ \\/ _` | | __/ __|"
+		<< "\n | |____| | |  __/ (_| | | |_\\__ \\"
+		<< "\n  \\_____|_|  \\___|\\__,_|_|\\__|___/"; 
+	//Display a screen border 
+	displayBorder(1); 
+
+	//Set the text colour to yellow 
+	SetConsoleTextAttribute(Console, 14);
+	//Display the credits 
+	cout << "Mancala, a text based adaptation \n"
+		<< "Made by team 1 \n\n"
+		<< "Shezwin Carim - #100708604 \n"
+		<< "Alvin Ng - #100754129 \n"
+		<< "Ame Gilham - #100741352 \n"
+		<< "Jonathan Naire - #100741302 \n"
+		<< "Ajieth Varatharajah - #100752537 \n"
+		<< "and Omair Ahmad - #100658447 \n\n"
+		<< "With music by Toby Fox (Remastered by Ame Gilham)\n\n"; 
+
+	//tell the player how to return to the main menu 
+	cout << "To return to the main menu input 1\n"; 
+
+	//display another screen border
+	displayBorder(2); 
+
+	//Take the user's input 
+	while (iInput != 1) {
+		//accept the input 
+		cin >> iInput; 
+		switch (iInput) {
+			//If they input 1, bring them back to the main menu 
+		case 1:
+			currentScreen = 0; 
+			break; 
+			//otherwise ask  them to only input 1 
+		default: 
+			cout << "\n\n You inputed an invalid value, please only input 1\n\n";
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
 	}
-	//otherwise play the main game music 
-	else {
-		PlaySound(TEXT("Game.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
-	}
-}
+} //end of displayCredits
 
 // Function to display the main menu
 void displayMainMenu() {
-
-	//music, if the previous screen was the game, start playing the main menu music 
-	if (prevScreen == 3) {
-		playMusic(0); 
-	}
 	//set the variable for player input 
 	int iInput=0;
-
-
 
 	//Clear the console 
 	system("CLS");
@@ -238,43 +282,44 @@ void displayMainMenu() {
 		 << "\n\n To open the instructions, input 1"
 		 << "\n\n To start the game, input 2"
 		 << "\n\n To open setting, input 3"
-		 << "\n\n To close the game, input 4\n\n";
+		 << "\n\n To open credits, input 4"
+		 << "\n\n To close the game, input 5\n\n";
 
-	//display another screen borders 
+	//display another screen border
 	displayBorder(2);
 
 	// Take the user's input 
-	while (iInput != 1 && iInput != 2 && iInput != 3 && iInput !=4) {
+	while (iInput != 1 && iInput != 2 && iInput != 3 && iInput !=4 && iInput != 5) {
 		//Accept the input
 		cin >> iInput;
 		switch (iInput) {
 			//If they input one display the instructions menu 
 		case 1:
-			prevScreen = currentScreen; 
 			currentScreen = 1;
 			break;
 			//If they input two, start the game 
 		case 2:
-			prevScreen = currentScreen; 
-			currentScreen = 3;
+			currentScreen = 2;
 			break;
 			//If they input three, display the settings menu 
 		case 3:
-			prevScreen = currentScreen; 
-			currentScreen = 2;
+			currentScreen = 3;
 			break;
-			//If they input 4, exit the game 
+			//If they input 4, open the credits menu  
 		case 4: 
-			prevScreen = currentScreen; 
-			//this exits the game 
 			currentScreen = 4; 
+			break; 
+			//If they input 5, exit the game 
+		case 5:
+			//this exits the game 
+			currentScreen = 5; 
 			//Otherwise ask them to only input a valid number 
 		default:
-			cout << "\n\n You inputed an invalid value, please only input a 1,2, 3, or 4\n\n";
+			cout << "\n\n You inputed an invalid value, please only input a 1,2, 3, 4, or 5\n\n";
 			cin.clear();
 			cin.ignore(256, '\n');
 		}
 	}
-}
+} //end of displayMainMenu
 
 
