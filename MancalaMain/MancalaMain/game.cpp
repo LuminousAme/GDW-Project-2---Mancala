@@ -391,27 +391,13 @@ void mancalaGame() {
 				captured = false; 
 			}
 
-			//If an extra turn was awarded 
-			if (extraTurn) {
-				//if it was the player say they got an extra turn 
-				if (turn) cout << "Congrats! You got a free turn! \n"; 
-				//If it was the ai, inform the player 
-				else cout << "The ai got a free turn. \n"; 
-				//Reset the extraTurn tracker 
-				extraTurn = false;
-			}
-			//Otherwise their is no extra turn 
-			else {
-				//So the turn shifts to the next person 
-				turn = !turn;
-			}
 			//Check if the game has ended 
 			if (isDone()) {
 				//If it has stop the current game 
 				inRound = false;
 				//clear the board 
 				cleanBoard();
-				
+
 				//draw the end game state in white 
 				drawBoard(true);
 
@@ -426,11 +412,27 @@ void mancalaGame() {
 				}
 				else {
 					//If the ai won, print a big "you lose" title card 
-					gameLose(); 
+					gameLose();
 				}
 			}
-			//Otherwise let the player read what's happening before progressing to the next turn 
+
+			//If an extra turn was awarded 
+			if (extraTurn) {
+				//if it was the player say they got an extra turn 
+				if (turn) cout << "Congrats! You got a free turn! \n"; 
+				//If it was the ai, inform the player 
+				else cout << "The ai got a free turn. \n"; 
+				//Reset the extraTurn tracker 
+				extraTurn = false;
+			}
+			//Otherwise their is no extra turn 
 			else {
+				//So the turn shifts to the next person 
+				turn = !turn;
+			}
+
+			//If the game hasn't e let the player read what's happening before progressing to the next turn 
+			if(!isDone()) {
 				cout << "When you are ready, just enter any character and you will be brought to the next turn.\n"; 
 				//Wait for the player to be ready to start the next turn
 				nextTurn(); 
