@@ -1,7 +1,8 @@
 #pragma once
 #include <random>
+#include <cstdlib>
 #include <iostream>
-#include <time.h>
+#include <ctime>
 #include <string>
 
 int easyAi(int board[]);

@@ -125,7 +125,7 @@
   <ItemGroup>
     <ClCompile Include="aiCode.cpp" />
     <ClCompile Include="gameBoard.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aiCode.h" />

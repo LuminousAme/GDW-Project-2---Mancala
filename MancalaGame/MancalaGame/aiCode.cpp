@@ -1,5 +1,6 @@
-
 #include "aiCode.h" 
+#include <stdlib.h>
+
 
 // Function for the easy difficulty AI.
 int easyAi(int board[])

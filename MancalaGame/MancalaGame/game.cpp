@@ -158,7 +158,7 @@ int isWin() {
 		return -1;
 	}
 }
-int main() {
+void mancalaGame() {
 	srand(time(0));
 	string cont = "nope";
 	while (inGame) {
@@ -207,5 +207,4 @@ int main() {
 			inGame = false;
 		}
 	}
-	return 0;
 }
