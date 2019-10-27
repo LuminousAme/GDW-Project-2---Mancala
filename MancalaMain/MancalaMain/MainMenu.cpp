@@ -5,7 +5,8 @@ using namespace std;
 HANDLE Console;
 
 int aiDifficulty = 1; 
-int currentScreen = 0; 
+int currentScreen = 0;
+int prevScreen = 3; 
 
 // Function to display instruction menu
 void displayInstructions(){
@@ -33,10 +34,17 @@ void displayInstructions(){
 	//Display the instructions for how to play the game 
 	cout << " The game of Mancala is played using a board with 2 rows and 6 holes in each row."
 		<< "\n At the beginning of the game, each hole is filled with 4 gems."
-		<< "\n Each player has a bank on their right side of the board."
+		<< "\n Each player has a bank (or mancala) on their right side of the board."
 		<< "\n The game starts with the first player choosing a hole on their side of the board."
 		<< "\n All the gems are removed from the chosen hole\n and 1 gem is dropped in subsequent holes going counter clockwise around the board."
-		<< "\n This process is repeated until all the gems have been placed in either a hole or your mancala.";
+		<< "\n This process is repeated until all the gems have been placed in either a hole or your mancala."
+		<< "\n If the last gem is placed in your mancala you get a free turn." 
+		<< "\n And if the last gem is placed in an empty hole on your side," 
+		<< "\n that gem along with all the gems in the pit opposite it immediately go to your manacala."
+		<< "\n\n The game ends when all holes on one side are empty," 
+		<< "\n all the remaining gems on the other side then go to that player's manacala"
+		<< "\n and whoever has more gems is the winner!"
+		<< "\n\n And that's all for the basics of Mancala!";
 	//Display a screen border again 
 	displayBorder(4);
 	//Tell the player how to return to the main menu 
@@ -49,6 +57,7 @@ void displayInstructions(){
 		//If they input 1 return them to the main menu, otherwise tell them they can only input 1 
 		switch (iInput) {
 		case 1:
+			prevScreen = currentScreen; 
 			currentScreen = 0;
 			break;
 		default:
@@ -133,6 +142,7 @@ void displaySettings() {
 			break;
 			//If they input 4, return to the main menu 
 		case 4:
+			prevScreen = currentScreen; 
 			currentScreen = 0; 
 			break;
 			//If they input anything else, ask them to input only a valid input 
@@ -175,9 +185,26 @@ void displayBorder(int i) {
 	}
 } //end of displayBorder 
 
+//Function to play a song 
+void playMusic(int song)
+{
+	//If the menu music has been selected play it 
+	if (song == 0) {
+		PlaySound(TEXT("MainMenu.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	}
+	//otherwise play the main game music 
+	else {
+		PlaySound(TEXT("Game.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	}
+}
+
 // Function to display the main menu
 void displayMainMenu() {
-	PlaySound(TEXT("MainMenu.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC); 
+
+	//music, if the previous screen was the game, start playing the main menu music 
+	if (prevScreen == 3) {
+		playMusic(0); 
+	}
 	//set the variable for player input 
 	int iInput=0;
 
@@ -220,14 +247,17 @@ void displayMainMenu() {
 		switch (iInput) {
 			//If they input one display the instructions menu 
 		case 1:
+			prevScreen = currentScreen; 
 			currentScreen = 1;
 			break;
 			//If they input two, start the game 
 		case 2:
+			prevScreen = currentScreen; 
 			currentScreen = 3;
 			break;
 			//If they input three, display the settings menu 
 		case 3:
+			prevScreen = currentScreen; 
 			currentScreen = 2;
 			break;
 			//Otherwise ask them to only input a valid number 

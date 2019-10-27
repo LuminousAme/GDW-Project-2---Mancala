@@ -10,6 +10,8 @@
 extern int aiDifficulty;
 //variable for the current screen, 0 is mainMenu, 1 is instructions, 2 is settings, and 3 is the main game
 extern int currentScreen;
+//variable for the last screen you were on 
+extern int prevScreen; 
 
 /*
 #ifndef MainMenu.h
@@ -35,3 +37,6 @@ void displayMainMenu();
 
 //Declare the function to draw screen borders 
 void displayBorder(int);
+
+//Declare a function to play the music 
+void playMusic(int song); 
