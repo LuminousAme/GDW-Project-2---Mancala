@@ -90,7 +90,7 @@ int hardAi(int board[]) {
 
 	//Cycle through each each pit on it's side to see if any have zero gems 
 	for(int i = 0; i < 6; i++) {
-		if (board[i + 7] == 0) {
+		if (board[i + 7] == 0 && board[5 - i] > 0) {
 			//If the pit has no gems, add it to the list and increase the list's size 
 			zeroPits[numOfZeroPits] = i + 7; 
 			numOfZeroPits++; 

@@ -1,6 +1,7 @@
 #include "aiCode.h"
 #include "gameBoard.h"
 #include "MainMenu.h"
+#include "game.h" 
 
 bool gameIsRunning = true; 
 
@@ -19,6 +20,9 @@ int main() {
 		case 2:
 			displaySettings();
 			break;
+		case 3: 
+			mancalaGame(); 
+			break; 
 		default:
 			gameIsRunning = false; 
 		}

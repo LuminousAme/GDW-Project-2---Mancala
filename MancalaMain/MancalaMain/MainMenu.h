@@ -5,10 +5,11 @@
 #include <windows.h>
 #include <MmSystem.h>
 
+extern HANDLE Console;
 
 //variable for the ai difficulty, 1 is easy, 2 is medium, and 3 hard 
 extern int aiDifficulty;
-//variable for the current screen, 0 is mainMenu, 1 is instructions, 2 is settings, and 3 is the main game
+//variable for the current screen, 0 is mainMenu, 1 is instructions, 2 is settings, and 3 is the main game (it will be equal to 4 when the user is leaving the game)
 extern int currentScreen;
 //variable for the last screen you were on 
 extern int prevScreen; 

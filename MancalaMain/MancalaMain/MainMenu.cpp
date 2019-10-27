@@ -2,7 +2,10 @@
 
 using namespace std;
 
-HANDLE Console;
+
+//Defines the standard output device
+HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
 int aiDifficulty = 1; 
 int currentScreen = 0;
@@ -208,8 +211,7 @@ void displayMainMenu() {
 	//set the variable for player input 
 	int iInput=0;
 
-	//Defines the standard output device
-	Console = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
 	//Clear the console 
 	system("CLS");
@@ -235,13 +237,14 @@ void displayMainMenu() {
 	cout << "\n A two-player turn-based strategy board game"
 		 << "\n\n To open the instructions, input 1"
 		 << "\n\n To start the game, input 2"
-		 << "\n\n To open setting, input 3\n\n";
+		 << "\n\n To open setting, input 3"
+		 << "\n\n To close the game, input 4\n\n";
 
 	//display another screen borders 
 	displayBorder(2);
 
 	// Take the user's input 
-	while (iInput!=1 && iInput != 2 && iInput != 3) {
+	while (iInput != 1 && iInput != 2 && iInput != 3 && iInput !=4) {
 		//Accept the input
 		cin >> iInput;
 		switch (iInput) {
@@ -260,9 +263,14 @@ void displayMainMenu() {
 			prevScreen = currentScreen; 
 			currentScreen = 2;
 			break;
+			//If they input 4, exit the game 
+		case 4: 
+			prevScreen = currentScreen; 
+			//this exits the game 
+			currentScreen = 4; 
 			//Otherwise ask them to only input a valid number 
 		default:
-			cout << "\n\n You inputed an invalid value, please only input a 1,2 or 3\n\n";
+			cout << "\n\n You inputed an invalid value, please only input a 1,2, 3, or 4\n\n";
 			cin.clear();
 			cin.ignore(256, '\n');
 		}

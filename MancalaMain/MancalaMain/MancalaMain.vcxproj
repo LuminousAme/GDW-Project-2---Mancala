@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aiCode.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aiCode.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="gameBoard.h" />
     <ClInclude Include="MainMenu.h" />
   </ItemGroup>
